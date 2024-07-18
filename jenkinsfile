@@ -1,0 +1,29 @@
+pipeline {
+  agent none
+  stages {
+    stage('Checkout') {
+      steps {
+        sh 'echo passed'
+        git branch: 'master', url: 'https://github.com/SIVAKUMAR1893/Calculator.git'
+      }
+    }
+    stage('Build and Test') {
+      steps {
+        sh 'ls -ltr'
+        // build the project and create a JAR file
+        sh 'cd /java/Calculator && mvn clean package'
+      }
+    }
+    stage('Static Code Analysis') {
+      environment {
+        SONAR_URL = "http://167.71.226.81:9000"
+      }
+      steps {
+        withCredentials([string(credentialsId: 'Sonar', variable: 'SonarScan')]) {
+          sh 'cd cd /java/Calculator && mvn sonar:sonar -Dsonar.login=$SonarScan -Dsonar.host.url=${SONAR_URL}'
+        }
+      }
+    }
+    
+  }
+}
