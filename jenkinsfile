@@ -20,7 +20,7 @@ pipeline {
       }
       steps {
         withCredentials([string(credentialsId: 'SonarScan', variable: 'SonarScan')]) {
-          sh 'cd cd /java/Calculator && mvn sonar:sonar -Dsonar.login=$SonarScan -Dsonar.host.url=${SONAR_URL}'
+          sh 'mvn sonar:sonar -Dsonar.login=$SonarScan -Dsonar.host.url=${SONAR_URL}'
         }
       }
     }
