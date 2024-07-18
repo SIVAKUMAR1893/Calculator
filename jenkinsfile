@@ -11,7 +11,7 @@ pipeline {
       steps {
         sh 'ls -ltr'
         // build the project and create a JAR file
-        sh 'cd /java/Calculator && mvn clean package'
+         mvn clean package'
       }
     }
     stage('Static Code Analysis') {
