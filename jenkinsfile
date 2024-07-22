@@ -26,6 +26,11 @@ pipeline {
     }
      stage('Push artifacts into artifactory') {
             steps {
+               rtServer (
+                            id: 'artifactory-server',
+                            url: '-----------------',
+                            credentialsId: 'artifactory-server'
+                        )
               rtUpload (
                 serverId: 'artifactory-server',
                 spec: '''{
