@@ -24,6 +24,21 @@ pipeline {
         }
       }
     }
+     stage('Push artifacts into artifactory') {
+            steps {
+              rtUpload (
+                serverId: 'artifactory-server',
+                spec: '''{
+                      "files": [
+                        {
+                          "pattern": "*.jar"
+                           "target": "remote/maven-remote/"
+                        }
+                    ]
+                }'''
+              )
+          }
+        }
     
   }
 }
