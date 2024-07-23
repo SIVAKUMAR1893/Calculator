@@ -33,7 +33,7 @@ pipeline {
             steps {
                 script {
                     try {
-                        def server = Artifactory.newServer url: 'http://157.230.222.202:8080/artifactory', credentialsId: 'artifactory-server'
+                        def server = Artifactory.newServer url: 'http://157.230.222.202:8080/artifactory', credentialsId: 'artifactory-token'
                         def uploadSpec = """{
                             "files": [
                                 {
