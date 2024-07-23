@@ -39,12 +39,12 @@ pipeline {
                             "files": [
                                 {
                                     "pattern": "target/*.jar",
-                                    "target": "${TARGET_REPO}/*.jar:$BUILD_NUMBER"
+                                    "target": "${TARGET_REPO}/"
                                 }
                             ]
                         }"""
                         
-                        server.upload(uploadSpec)
+                        server.upload(uploadSpec:$BUILD_NUMBER)
                     } catch (Exception e) {
                         error("Failed to deploy artifacts to Artifactory: ${e.message}")
                     }
