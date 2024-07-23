@@ -3,7 +3,7 @@ pipeline {
   stages {
     stage('Checkout') {
       steps {
-        sh 'echo "passed"'
+        sh 'echo "pass"'
         git branch: 'master', url: 'https://github.com/SIVAKUMAR1893/Calculator.git'
       }
     }
