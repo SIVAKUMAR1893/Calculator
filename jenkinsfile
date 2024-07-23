@@ -39,7 +39,7 @@ pipeline {
                             "files": [
                                 {
                                     "pattern": "target/*.jar",
-                                    "target": "${TARGET_REPO}/"."${BN}"
+                                    "target": "${TARGET_REPO}/*.*:$BUILD_NUMBER"
                                 }
                             ]
                         }"""
