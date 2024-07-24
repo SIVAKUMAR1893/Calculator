@@ -52,9 +52,11 @@ pipeline {
             }
         }
 
-      stage('Docker Build') {
+   stage('Docker Build') {
         steps {
-        sh 'docker build -t app/calculator.1:$BUILD_NUMBER'
+          sh 'ls -ltr'
+          sh 'docker build -t app/calculator.1:$BUILD_NUMBER'
+          sh 'docker images'
       }
     }
 
