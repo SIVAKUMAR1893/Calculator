@@ -53,14 +53,11 @@ pipeline {
         }
 
    stage('Docker Build') {
-        steps {
-          sh 'ls -ltr'
-          sh 'docker build -t app/calculator.1:$BUILD_NUMBER'
-          sh 'docker images'
+      steps {
+        sh 'docker build -t siva/calculator:$BUILD_NUMBER .'
       }
     }
 
-        }
-    
   }
+}
 
