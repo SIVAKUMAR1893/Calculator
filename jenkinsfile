@@ -10,7 +10,7 @@ pipeline {
     stage('Build and Test') {
       steps {
         sh 'ls -ltr'
-        // build the project and create a JAR file
+        // build the project and create a JAaR file
         sh 'mvn clean package'
       }
     }
