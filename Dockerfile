@@ -8,4 +8,4 @@ COPY . .
 EXPOSE 8085
 
 # Run the jar file
-CMD ["java", "-jar", "*.jar"]
+CMD ["java", "-jar", "/app/*.jar"]
