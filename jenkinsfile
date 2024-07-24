@@ -24,6 +24,12 @@ pipeline {
         }
       }
     }
+    stage('Docker Build') {
+      steps {
+        sh 'docker build -t siva/calculator:$BUILD_NUMBER .'
+      }
+    }
+
      stage('Deploy to Artifactory') {
             environment {
                 // Define the target repository in Artifactory
@@ -51,12 +57,6 @@ pipeline {
                 }
             }
         }
-
-   stage('Docker Build') {
-      steps {
-        sh 'docker build -t siva/calculator:$BUILD_NUMBER .'
-      }
-    }
 
   }
 }
