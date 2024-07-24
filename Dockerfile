@@ -1,4 +1,4 @@
-FROM java:17.0.11
+FROM java:8
 WORKDIR /app
 
 # Copy the JAR file (/app)
