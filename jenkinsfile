@@ -51,6 +51,14 @@ pipeline {
                 }
             }
         }
+
+        stage('Docker Build') {
+      agent any
+      steps {
+        sh 'docker build -t app/calculator.1:$BUILD_NUMBER'
+      }
+    }
+
         }
     
   }
