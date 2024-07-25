@@ -69,7 +69,7 @@ pipeline {
      }
      stage('Uploading Image Scan to Jrog Artifactory'){
          steps{
-          sh 'jf rt upload --url http://172.17.0.3:8082/artifactory/ --access-token ${ARTIFACTORY_ACCESS_TOKEN} trivy-scan-files/trivy-image-scan-$BUILD_NUMBER.txt trivy-image-scan/'           
+          sh 'jf rt upload --url http://157.230.222.202:8080/artifactory --access-token ${ARTIFACTORY_ACCESS_TOKEN} trivy-scan-files/trivy-image-scan-$BUILD_NUMBER.txt trivy-image-scan/'           
          }
      }
 
