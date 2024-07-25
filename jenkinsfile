@@ -63,6 +63,7 @@ pipeline {
 
           stage('Image Scanning Trivy'){
             steps{
+               sh 'mkdir -p $WORKSPACE/trivy-scan-files'
                sh 'trivy image java-web-app-docker/calculator:$BUILD_NUMBER > $WORKSPACE/trivy-scan-files/trivy-image-scan-$BUILD_NUMBER.txt'
             }
      }
