@@ -45,6 +45,7 @@ pipeline {
                         }"""
                         
                         server.upload(uploadSpec)
+                        jf 'rt build-publish'
                     } catch (Exception e) {
                         error("Failed to deploy artifacts to Artifactory: ${e.message}")
                     }
