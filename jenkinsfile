@@ -74,15 +74,16 @@ pipeline {
          }
      }
 
-     stage('Docker Push to Repo') {
+     stage ('Push image to Artifactory') { // take that image and push to artifactory
         steps {
-          container('docker'){
-                script {
-                  docker.withRegistry( 'http://157.230.222.202:8080/artifactory', 'artifactory-token' ) {
-                      sh "docker push java-web-app-docker/calculator:$BUILD_NUMBER"
-                       }
-                  }
-              }
+            rtDockerPush(
+                serverId: "artifactory-server",
+                image: "java-web-app-docker/calculator:$BUILD_NUMBER",
+                host: 'http://157.230.222.202:8080/artifactory',
+                targetRepo: 'java-web-app-docker/', // where to copy to (from docker-virtual)
+                // Attach custom properties to the published artifacts:
+                properties: 'project-name=docker1;status=stable'
+            )
         }
     }
      stage('Cleaning up DockerImage'){
