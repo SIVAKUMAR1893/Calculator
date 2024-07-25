@@ -77,7 +77,7 @@ pipeline {
      stage('Pushing Docker Image into Jfrog'){
          steps{
              sh '''
-             docker login java-web-app-docker.jfrog.io:8080 -u admin -p ${JFROG_PASSWORD}
+             docker login java-web-app-docker.jfrog.io -u siva -p ${JFROG_PASSWORD}
              docker push java-web-app-docker/calculator:$BUILD_NUMBER
              '''
         }
