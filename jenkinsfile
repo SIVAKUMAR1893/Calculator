@@ -2,6 +2,7 @@ pipeline {
   agent any
   environment {
     ARTIFACTORY_ACCESS_TOKEN = credentials('artifactory-token')
+    JFROG_PASSWORD = credentials('jfrog-usr-password')
   }
   stages {
     stage('Checkout') {
@@ -72,6 +73,20 @@ pipeline {
           sh 'jf rt upload --url http://157.230.222.202:8080/artifactory --access-token ${ARTIFACTORY_ACCESS_TOKEN} trivy-scan-files/trivy-image-scan-$BUILD_NUMBER.txt trivy-image-scan/'           
          }
      }
+
+     stage('Pushing Docker Image into Jfrog'){
+         steps{
+             sh '''
+             docker login java-web-app-docker.jfrog.io -u siva -p ${JFROG_PASSWORD}
+             docker push java-web-app-docker/calculator:$BUILD_NUMBER
+             '''
+        }
+     }
+     stage('Cleaning up DockerImage'){
+            steps{
+                sh 'docker rmi java-web-app-docker/calculator:$BUILD_NUMBER'
+           }
+       }
 
 
   }
