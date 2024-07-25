@@ -29,4 +29,11 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
+    <repositories>
+    <repository>
+      <id>Calculator</id>
+      <name>com.houari</name>
+      <url>http://157.230.222.202:8080/artifactory/java-web-app/</url>
+    </repository>
+</repositories>
 </project>
