@@ -75,7 +75,7 @@ pipeline {
      }
     stage ('Push image to Artifactory') { 
         steps {
-            artServer = Artifactory.newServer(url: http://157.230.222.202:8080/artifactory/java-web-app-docker, credentialsId: 'artifactory-token')
+            artServer = Artifactory.newServer(url: 'http://157.230.222.202:8080/artifactory/java-web-app-docker', credentialsId: 'artifactory-token')
             artDocker = Artifactory.docker(server: artServer)
             artDocker.push(java-web-app-docker/calculator:$BUILD_NUMBER, java-web-app-docker)
         }
