@@ -57,7 +57,7 @@ pipeline {
         }
         stage('Docker Build') {
             steps {
-                sh 'docker build -t java-web-app-docker/calculator:$BUILD_NUMBER --pull=true .'
+                sh 'docker build -t java-web-app-docker.jfrog.io/java-web-app-docker/calculator:$BUILD_NUMBER --pull=true .'
                 sh 'docker images'
       }
     }
