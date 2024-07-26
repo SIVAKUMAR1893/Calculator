@@ -1,4 +1,4 @@
-FROM java-web-app-docker.jfrog.io/java-web-app-docker/openjdk:17-jdk-slim
+FROM openjdk:17-jdk-slim
 WORKDIR /app
 
 # Copy the JAR file (/app)
