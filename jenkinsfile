@@ -73,16 +73,11 @@ pipeline {
           sh 'jf rt upload --url http://157.230.222.202:8080/artifactory --access-token ${ARTIFACTORY_ACCESS_TOKEN} trivy-scan-files/trivy-image-scan-$BUILD_NUMBER.txt trivy-image-scan/'           
          }
      }
-    stage ('Push image to Artifactory') { // take that image and push to artifactory
+    stage ('Push image to Artifactory') { 
         steps {
-            rtDockerPush(
-                serverId: "artifactory-server",
-                image: "java-web-app-docker/calculator:$BUILD_NUMBER",
-                host: 'http://157.230.222.202:8080/artifactory',
-                targetRepo: 'java-web-app-docker', // where to copy to (from docker-virtual)
-                // Attach custom properties to the published artifacts:
-                properties: 'project-name=docker1;status=stable'
-            )
+            artServer = Artifactory.newServer(url: http://157.230.222.202:8080/artifactory/java-web-app-docker, credentialsId: 'artifactory-token')
+            artDocker = Artifactory.docker(server: artServer)
+            artDocker.push(java-web-app-docker/calculator:$BUILD_NUMBER, java-web-app-docker)
         }
     }
      stage('Pushing Docker Image into Jfrog'){
